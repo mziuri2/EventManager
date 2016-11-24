@@ -46,6 +46,7 @@ public class UserDAOImpl implements UserDAO {
     public List<Event> getMyGoingEvents(User userr) {
         List<Event> goingEvents = new ArrayList<>();
         try {
+            pstmt = con.prepareStatement("SELECT * FROM events WHERE ");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -65,11 +66,28 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<Event> getMyCreatedEventsDESC() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Event> myEvents = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM events WHERE user_id = ?;");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String eventName = rs.getString("eventName");
+                int user_id = rs.getInt("id");
+                int rating = rs.getInt("rating");
+                int place_id = rs.getInt("place_id");
+                Date date = rs.getDate("date");
+                Event event = new Event(id, eventName, user_id, rating, place_id, date);
+                myEvents.add(event);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myEvents;
     }
 
     @Override
     public void goingOnEvent(Event event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }
