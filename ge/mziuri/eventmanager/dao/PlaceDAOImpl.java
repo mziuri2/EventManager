@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class PlaceDAOImpl implements PlaceDAO {
@@ -62,12 +62,12 @@ public class PlaceDAOImpl implements PlaceDAO {
     }
 
     @Override
-    public List<Event>  getEventByDateAndPlace(String date, Place place) {
+    public List<Event>  getEventByDateAndPlace(Date date, Place place) {
         List<Event> events = new ArrayList<>();
         int i=0;
         try {
             pstmt = con.prepareStatement("SELECT * FROM event WHERE date = ? and place_id = ?;");
-            pstmt.setString(1, date);
+            pstmt.setDate(1, date);
             pstmt.setInt(2, place.getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
@@ -75,7 +75,7 @@ public class PlaceDAOImpl implements PlaceDAO {
                 String eventName = rs.getString("eventName");
                 int user_id = rs.getInt("user_id");
                 int rating = rs.getInt("rating");
-                Event event = new Event(id, eventName, user_id, rating);
+                Event event = new Event(id, eventName, user_id, rating,place.getId(),date);
                 events.add(event);
             }
             

@@ -9,16 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+import java.sql.Date;
 
-public class EventDAOImpl implements EventDAO{
-    
+public class EventDAOImpl implements EventDAO {
+
     private Connection con;
-    
+
     private PreparedStatement pstmt;
-    
-    private int i=0;
-    
+
     public EventDAOImpl() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -27,14 +25,14 @@ public class EventDAOImpl implements EventDAO{
             System.out.println(ex.getMessage());
         }
     }
-    
+
     @Override
     public void addEvent(Event event) {
         try {
             pstmt = con.prepareStatement("INSERT INTO EVENTS (name, date, place_id) VALUES (?,?,?);");
             pstmt.setString(1, event.getEventName());
             pstmt.setDate(2, event.getDate());
-            pstmt.setInt(3,event.getPlace_id());
+            pstmt.setInt(3, event.getPlace_id());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -54,9 +52,9 @@ public class EventDAOImpl implements EventDAO{
                 int rating = rs.getInt("rating");
                 int place_id = rs.getInt("place_id");
                 Date date = rs.getDate("date");
-                Event event = new Event(id,eventName,user_id,rating,place_id,date);
+                Event event = new Event(id, eventName, user_id, rating, place_id, date);
                 events.add(event);
-            } 
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -66,22 +64,24 @@ public class EventDAOImpl implements EventDAO{
     @Override
     public List<Event> getTodaysTop3Events() {
         List<Event> events = new ArrayList<>();
+        int i = 0;
         try {
             pstmt = con.prepareStatement("SELECT * FROM event ORDER BY rating ASC;");
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()&&i!=3) {
+            while (rs.next() && i != 3) {
                 int id = rs.getInt("id");
                 String eventName = rs.getString("eventName");
                 int user_id = rs.getInt("user_id");
                 int rating = rs.getInt("rating");
                 int place_id = rs.getInt("place_id");
                 Date date = rs.getDate("date");
-                Event event = new Event(id,eventName,user_id,rating,place_id,date);
+                Event event = new Event(id, eventName, user_id, rating, place_id, date);
                 events.add(event);
+                i++;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return events;
-    }  
+    }
 }

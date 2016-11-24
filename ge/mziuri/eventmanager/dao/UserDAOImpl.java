@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,11 +43,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<Event> getMyGoingEvents(User userr) {
+    public List<Event> getMyGoingEvents(User user) {
         List<Event> goingEvents = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement("SELECT * FROM events WHERE ");
+            pstmt = con.prepareStatement("SELECT * FROM events WHERE id=(SELECT event_id FROM gointevent WHERE user_id = ?)");
             ResultSet rs = pstmt.executeQuery();
+            pstmt.setInt(1, user.getId());
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String eventName = rs.getString("eventName");
@@ -87,7 +88,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void goingOnEvent(Event event) {
-        
+    public void goingOnEvent(Event event, User user) {
+        try {
+            pstmt = con.prepareStatement("INSERT INTO goingevents (event_id,user_id)values (?,?);");
+            pstmt.setInt(1, event.getId());
+            pstmt.setInt(2, user.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

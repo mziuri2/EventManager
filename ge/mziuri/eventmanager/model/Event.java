@@ -1,6 +1,6 @@
 package ge.mziuri.eventmanager.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Event {
     
@@ -22,6 +22,7 @@ public class Event {
         this.place_id = place_id;
         this.date = date;
     }
+    
 
     public int getId() {
         return id;
