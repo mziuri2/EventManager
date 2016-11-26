@@ -15,6 +15,11 @@ public class Place {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Place{" + "id=" + id + ", name=" + name + ", address=" + address + '}';
+    }
+
     public int getId() {
         return id;
     }

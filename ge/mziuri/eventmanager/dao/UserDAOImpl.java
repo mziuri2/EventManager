@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser(User user) {
         try {
-            pstmt = con.prepareStatement("INSERT INTO users (id,username, password) VALUES (?,?,?,?);");
+            pstmt = con.prepareStatement("INSERT INTO users (id,username, password) VALUES (?,?,?);");
             pstmt.setInt(1, user.getId());
             pstmt.setString(2, user.getUsername());
             pstmt.setString(3, user.getPassword());

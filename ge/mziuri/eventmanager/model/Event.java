@@ -71,4 +71,9 @@ public class Event {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" + "id=" + id + ", eventName=" + eventName + ", user_id=" + user_id + ", rating=" + rating + ", place_id=" + place_id + ", date=" + date + '}';
+    }
 }

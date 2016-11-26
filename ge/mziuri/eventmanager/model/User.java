@@ -19,6 +19,12 @@ public class User {
         this.goingEvents = goingEvents;
     }
 
+    public User(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -49,5 +55,10 @@ public class User {
 
     public void setGoingEvents(List<Event> goingEvents) {
         this.goingEvents = goingEvents;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", goingEvents=" + goingEvents + '}';
     }
 }

@@ -31,7 +31,7 @@ public class PlaceDAOImpl implements PlaceDAO {
     @Override
     public void addPlace(Place place) {
         try {
-            pstmt = con.prepareStatement("INSERT INTO country (id, name, address) VALUES (?,?,?,?,?)");
+            pstmt = con.prepareStatement("INSERT INTO places (id, name, address) VALUES (?,?,?)");
             pstmt.setInt(1, place.getId());
             pstmt.setString(2, place.getName());
             pstmt.setString(3, place.getAddress());
@@ -46,7 +46,7 @@ public class PlaceDAOImpl implements PlaceDAO {
     public List<Place> getAllPlaces() {
         List<Place> places = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement("SELECT * FROM place;");
+            pstmt = con.prepareStatement("SELECT * FROM places;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
