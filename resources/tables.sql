@@ -1,5 +1,9 @@
 CREATE TABLE EVENTS(
+<<<<<<< HEAD
     id INT PRIMARY KEY NOT NULL,
+=======
+    id SERIAL PRIMARY KEY NOT NULL,
+>>>>>>> 8bd9b30ef911aa1dae3f4ad0e2021c0ae202a3ce
     eventName VARCHAR(30) NOT NULL,
     user_id INT NOT NULL,
     rating INT NOT NULL,
@@ -8,6 +12,7 @@ CREATE TABLE EVENTS(
     )
 
 CREATE TABLE USERS(
+<<<<<<< HEAD
     id INT PRIMARY KEY NOT NULL,
     username VARCHAR(20) NOT NULL,
     password VARCHAR(20) NOT NULL,
@@ -19,3 +24,21 @@ CREATE TABLE PLACES(
     name VARCHAR(20) NOT NULL,
     address VARCHAR(50) NOT NULL
     );
+=======
+    id SERIAL PRIMARY KEY NOT NULL,
+    username VARCHAR(20) NOT NULL,
+    password VARCHAR(20) NOT NULL
+    );
+    
+CREATE TABLE PLACES(
+	id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    address VARCHAR(50) NOT NULL
+    );
+	
+CREATE TABLE GOINGEVENTS(
+	id SERIAL PRIMARY KEY NOT NULL,
+	event_id INT REFERENCES EVENTS(id),
+	user_id INT REFERENCES USERS(id)
+);
+>>>>>>> 8bd9b30ef911aa1dae3f4ad0e2021c0ae202a3ce

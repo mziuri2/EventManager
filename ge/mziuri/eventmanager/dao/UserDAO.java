@@ -10,5 +10,5 @@ public interface UserDAO {
     void addUser(User user);
     List<Event> getMyGoingEvents(User user); 
     List<Event> getMyCreatedEventsDESC(); //klebadobit
-    void goingOnEvent(Event event);
+    void goingOnEvent(Event event,User user);
 }
