@@ -66,15 +66,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<Event> getMyCreatedEventsDESC() {
+    public List<Event> getMyCreatedEventsDESC(int user_id) {
         List<Event> myEvents = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement("SELECT * FROM events WHERE user_id = ?;");
+            pstmt = con.prepareStatement("SELECT * FROM events WHERE user_id = ? ORDER BY rating ASC");
+            pstmt.setInt(1, user_id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String eventName = rs.getString("eventName");
-                int user_id = rs.getInt("id");
                 int rating = rs.getInt("rating");
                 int place_id = rs.getInt("place_id");
                 Date date = rs.getDate("date");

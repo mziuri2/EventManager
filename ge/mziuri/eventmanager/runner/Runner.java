@@ -27,29 +27,28 @@ public class Runner {
         /*Place class test
         Place place1 = new Place(1, "gldani", "dzaan shors");
         placeDAO.addPlace(place1);
-        Place place2 = new Place(2, "MySweetHome", "panaskerteli str.");     musha
-        placeDAO.addPlace(place2);
-        */
-        //System.out.println(placeDAO.getAllPlaces());                       musha
+        Place place2 = new Place(2, "MySweetHome", "panaskerteli str.");     //mushaa
+        placeDAO.addPlace(place2);*/
         
-        //placeDAO.getEventByDateAndPlace(date, place1);          
+        //System.out.println(placeDAO.getAllPlaces());                       //mushaa
+        
+        //System.out.println(placeDAO.getEventByDateAndPlace( new Date(1, 1, 1), 1));      //mushaa
         
         
         /*User class test
         User user1 = new User(3, "tato", "tato123");
         userDAO.addUser(user1);
-        User user2 = new User(77, "giorgi leqvinadze", "pass123321");       musha
-        userDAO.addUser(user2);
-        */
-        //userDAO.getMyCreatedEventsDESC();
+        User user2 = new User(77, "giorgi leqvinadze", "pass123321");       //mushaa
+        userDAO.addUser(user2);*/
+        
+        //System.out.println(userDAO.getMyCreatedEventsDESC(1));             //mushaa
         //userDAO.getMyGoingEvents(user2);
         //userDAO.goingOnEvent(event, user2);
         
         
-        //Event class unfinished test
-        Event event1 = new Event(1, "Devfest", 1, 0, 1, new Date(1, 1, 1));
+        /*Event class unfinished test
+        Event event1 = new Event(5000, "Devfest", 1, 0, 1, new Date(1, 1, 1));    //mushaa
         eventDAO.addEvent(event1);
-        eventDAO.addEvent(event1);
-        
+        */
     }
 }

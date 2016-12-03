@@ -62,20 +62,20 @@ public class PlaceDAOImpl implements PlaceDAO {
     }
 
     @Override
-    public List<Event>  getEventByDateAndPlace(Date date, Place place) {
+    public List<Event>  getEventByDateAndPlace(Date date, int place_id) {
         List<Event> events = new ArrayList<>();
         int i=0;
         try {
-            pstmt = con.prepareStatement("SELECT * FROM event WHERE date = ? and place_id = ?;");
+            pstmt = con.prepareStatement("SELECT * FROM events WHERE date = ? and place_id = ?;");
             pstmt.setDate(1, date);
-            pstmt.setInt(2, place.getId());
+            pstmt.setInt(2, place_id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
                 int id = rs.getInt("id");
                 String eventName = rs.getString("eventName");
                 int user_id = rs.getInt("user_id");
                 int rating = rs.getInt("rating");
-                Event event = new Event(id, eventName, user_id, rating,place.getId(),date);
+                Event event = new Event(id, eventName, user_id, rating,place_id,date);
                 events.add(event);
             }
             

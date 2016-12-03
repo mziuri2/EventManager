@@ -9,5 +9,5 @@ public interface PlaceDAO {
     
     void addPlace(Place place);
     List<Place> getAllPlaces();
-    List<Event> getEventByDateAndPlace(Date date,Place place);
+    List<Event> getEventByDateAndPlace(Date date,int place_id);
 }

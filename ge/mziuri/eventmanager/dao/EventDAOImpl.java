@@ -29,10 +29,13 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public void addEvent(Event event) {
         try {
-            pstmt = con.prepareStatement("INSERT INTO EVENTS (name, date, place_id) VALUES (?,?,?);");
+            pstmt = con.prepareStatement("INSERT INTO EVENTS (eventName, date, place_id, id, user_id, rating) VALUES (?,?,?,?,?,?);");
             pstmt.setString(1, event.getEventName());
             pstmt.setDate(2, event.getDate());
             pstmt.setInt(3, event.getPlace_id());
+            pstmt.setInt(4, event.getId());
+            pstmt.setInt(5, event.getUser_id());
+            pstmt.setInt(6, event.getRating());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
